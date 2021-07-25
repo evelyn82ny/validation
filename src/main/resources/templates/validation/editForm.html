@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <link th:href="@{/css/bootstrap.min.css}"
+    <link th:href="@{/templates/css/bootstrap.min.css}"
           href="../css/bootstrap.min.css" rel="stylesheet">
     <style>
         .container {
@@ -45,7 +45,7 @@
             <div class="col">
                 <button class="w-100 btn btn-secondary btn-lg"
                         onclick="location.href='item.html'"
-                        th:onclick="|location.href='@{/validation/v1/items/{itemId}(itemId=${item.id})}'|"
+                        th:onclick="|location.href='@{/validation/items/{itemId}(itemId=${item.id})}'|"
                         type="button" th:text="#{button.cancel}">취소</button>
             </div>
         </div>
