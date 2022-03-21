@@ -2,8 +2,8 @@
 
 - error 가 발생될 때 FieldError, ObjectError 로 나눠지며
 - 에러 발생에 대한 메시지가 출력되는 과정에도 정해진 규칙이 있으며
-- 개발자가 직접 설정할 필요없이 Spring이 제공하는 Bean Validation만 쓰면 된다. 
-- 
+- 개발자가 직접 설정할 필요없이 Spring이 제공하는 Bean Validation만 쓰면 된다.
+
 결국 개발자는 Spring이 제공하는 것을 편하게 가져다 쓰면 되지만, 조금 더 정확하게 파악하고자 공부한 내용을 작성한다.
 
 # HashMap으로 error 처리
@@ -167,13 +167,13 @@ Integer 타입인 가격에 String을 입력하면 @ModelAttribute Binding 시�
 
 ### white label error
 
-![png](/_img/whitelabel_error_page.png){: .align-center}{: width="80%" height="80%"}
+![png](/_img/whitelabel_error_page.png)
 
 @ModelAttribute Binding 타입 오류 발생시 **BindingResult가 없으면** 400 오류와 함께 위와 같은 오류 페이지로 넘어간다. BindingResult가 없으면 오류 정보를 담을 수 없고 즉시 error로 처리된다.<br>
 
 ### Field error
 
-![png](/_img/BindingResult_error.png){: .align-center}{: width="80%" height="80%"}
+![png](/_img/BindingResult_error.png)
 
 @ModelAttribute Binding 타입 오류 발생시 **BindingResult가 있으면** 해당 필드에 대한 오류를 BindingResult에 담아 Controller를 호출한다. 필드에 대한 오류이기 때문에 FieldError이며 Spring이 알아서 FieldError를 생성해 BindingResult에 담는다. 
 Controller가 정상적으로 호출되기 때문에 상품 등록화면과 해당 에러 메시지를 출력한다.<br>
@@ -191,7 +191,7 @@ BindingResult에 validation error를 담는 방법은 다음과 같다.
 
 타입이 일치하지 않거나 조건에 충족되지 않은 잘못된 데이터를 작성해도 사용자에게 그대로 보여주기 위한 설정을 한다.<br>
 
-![png](/_img/data_not_retained_when_incorrectly_entered.png){: .align-center}{: width="80%" height="80%"}
+![png](/_img/data_not_retained_when_incorrectly_entered.png)
 
 - field error : 1,000원 부터 입력받기로한 가격 필드에 10원을 입력해 전송하면 가격 데이터만 제외하고 출력된다.
 - binding 실패 : Integer type인 가격 필드에 String 입력하면 가격 데이터만 제외하고 출력된다.
@@ -220,7 +220,7 @@ bindingResult.addError(new FieldError("item", "price", item.getPrice(),
 - arguments : 메시지에서 사용하는 인자 (아래 message 기능 참고)
 - defaultMessage : 기본 오류 메시지
 
-![png](/_img/data_retained_when_incorrectly_entered.png){: .align-center}{: width="80%" height="80%"}
+![png](/_img/data_retained_when_incorrectly_entered.png)
 
 Binding / validation 오류 발생시 rejectedValue에 잘못 입력된 데이터를 저장하기 때문에 데이터 유지가 가능하다.
 
@@ -371,11 +371,11 @@ MessageCodesResolver는 level1처럼 구체적인 메시지부터 만든다. 예
 
 해당 순서로 생성된 메시지 코드를 기반으로 errors.properties 같은 MessageSource에서 메시지를 매칭한다.
 
-![png](/_img/set_message_for_binding_error.png){: .align-center}{: width="80%" height="80%"}
+![png](/_img/set_message_for_binding_error.png)
 
 개발자가 작성한 메시지 코드와 매칭에 성공하면 해당 오류 메시지가 출력된다.
 
-![png](/_img/BindingResult_error.png){: .align-center}{: width="80%" height="80%"}
+![png](/_img/BindingResult_error.png)
 
 만약 MessageCodesResolver가 만든 모든 메시지에 대해 매칭이 실패한다면 Spring이 제공하는 기본 오류 메시지가 출력된다.
 
@@ -494,11 +494,11 @@ Spring Boot 2.0.5 버전 이상 사용 시 javax.validation 설정을 위한 클
 
 Binding에 성공한 필드만 Bean Validation이 적용된다.
 
-![png](/_img/set_message_for_binding_error.png){: .align-center}{: width="80%" height="80%"}
+![png](/_img/set_message_for_binding_error.png)
 
 Integer type인 가격에 String을 입력하면 typeMismatch로 FieldError가 생성되며 해당 필드에 대한 **validation 이 진행되지 않고 끝난다.**
 
-![png](/_img/data_retained_when_incorrectly_entered.png){: .align-center}{: width="80%" height="80%"}
+![png](/_img/data_retained_when_incorrectly_entered.png)
 
 Binding에 성공한 경우 Validation이 처리되므로 검증 오류 메시지가 출력된다.
 
