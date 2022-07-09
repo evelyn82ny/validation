@@ -47,7 +47,7 @@ public class ValidationItemController {
         if (form.getPrice() != null && form.getQuantity() != null) {
             int resultPrice = form.getPrice() * form.getQuantity();
             if (resultPrice < 10000) {
-                bindingResult.reject("totalPriceMin", new Object[]{10000, resultPrice}, null);
+                bindingResult.reject("totalPriceMin.item", new Object[]{10000, resultPrice}, null);
             }
         }
 
